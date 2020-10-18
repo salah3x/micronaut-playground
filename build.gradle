@@ -31,8 +31,7 @@ dependencies {
     implementation("io.micronaut.data:micronaut-data-hibernate-jpa")
     runtimeOnly("ch.qos.logback:logback-classic")
     runtimeOnly("mysql:mysql-connector-java")
-    testImplementation(platform("org.testcontainers:testcontainers-bom:1.14.3"))
-    testRuntimeOnly("org.testcontainers:mysql")
+    testRuntimeOnly("com.h2database:h2")
 }
 
 mainClassName = "com.example.Application"
