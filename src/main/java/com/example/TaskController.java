@@ -7,7 +7,6 @@ import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.Post;
 import lombok.RequiredArgsConstructor;
 
-import javax.persistence.PersistenceException;
 import javax.validation.Valid;
 
 @Controller("/tasks")
@@ -27,7 +26,7 @@ public class TaskController {
     }
 
     @Error
-    HttpResponse<Void> errorHandler(PersistenceException e) {
-        return HttpResponse.badRequest();
+    HttpResponse<String> errorHandler(DuplicateEntryException e) {
+        return HttpResponse.badRequest().body(e.getMessage());
     }
 }

@@ -58,6 +58,10 @@ class TaskControllerTest {
                 }
         );
         Assertions.assertEquals(HttpStatus.BAD_REQUEST, exception.getStatus());
+        Assertions.assertEquals(
+                "Task with name 'Task' already exists.",
+                exception.getResponse().getBody(String.class).orElse(null)
+        );
 
         var tasks2 = client.toBlocking()
                 .retrieve(HttpRequest.GET("/"), Argument.listOf(Task.class));
