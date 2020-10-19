@@ -34,7 +34,8 @@ dependencies {
     implementation("io.swagger.core.v3:swagger-annotations")
     runtimeOnly("ch.qos.logback:logback-classic")
     runtimeOnly("mysql:mysql-connector-java")
-    testRuntimeOnly("com.h2database:h2")
+    testImplementation(platform("org.testcontainers:testcontainers-bom:1.14.3"))
+    testRuntimeOnly("org.testcontainers:mysql")
 }
 
 mainClassName = "com.example.Application"

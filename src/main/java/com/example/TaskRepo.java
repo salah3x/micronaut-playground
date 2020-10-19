@@ -6,10 +6,9 @@ import io.micronaut.transaction.annotation.ReadOnly;
 
 import javax.validation.constraints.NotNull;
 import java.util.Optional;
-import java.util.UUID;
 
 @Repository
-public interface TaskRepo extends CrudRepository<Task, UUID> {
+public interface TaskRepo extends CrudRepository<Task, Long> {
 
     @ReadOnly
     Optional<Task> findByName(@NotNull String name);
