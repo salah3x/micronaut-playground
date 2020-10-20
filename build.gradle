@@ -25,6 +25,7 @@ dependencies {
     compileOnly('org.projectlombok:lombok:1.18.12')
     annotationProcessor("io.micronaut.data:micronaut-data-processor")
     annotationProcessor("io.micronaut.openapi:micronaut-openapi")
+    annotationProcessor("io.micronaut:micronaut-management")
     implementation("io.micronaut:micronaut-validation")
     implementation("io.micronaut:micronaut-runtime")
     implementation("io.micronaut:micronaut-http-client")
@@ -32,6 +33,7 @@ dependencies {
     implementation("io.micronaut.data:micronaut-data-hibernate-jpa")
     implementation("io.micronaut.flyway:micronaut-flyway")
     implementation("io.swagger.core.v3:swagger-annotations")
+    implementation("io.micronaut:micronaut-management")
     runtimeOnly("ch.qos.logback:logback-classic")
     runtimeOnly("mysql:mysql-connector-java")
     testImplementation(platform("org.testcontainers:testcontainers-bom:1.14.3"))
@@ -42,9 +44,4 @@ mainClassName = "com.example.Application"
 java {
     sourceCompatibility = JavaVersion.toVersion('11')
     targetCompatibility = JavaVersion.toVersion('11')
-}
-
-tasks.withType(JavaCompile) {
-    options.fork = true
-    options.forkOptions.jvmArgs << '-Dmicronaut.openapi.views.spec=rapidoc.enabled=true'
 }
