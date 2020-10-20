@@ -3,6 +3,8 @@ micronaut:
     name: demo
   server:
     thread-selection: auto
+    cors:
+      enabled: true
   router:
     static-resources:
       swagger:
