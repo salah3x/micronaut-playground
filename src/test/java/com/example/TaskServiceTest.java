@@ -18,7 +18,7 @@ class TaskServiceTest {
 
     @Test
     void getTasks() {
-        assertEquals(4, service.getTasks().spliterator().getExactSizeIfKnown());
+        assertEquals(4, service.getTasks().size());
     }
 
     @Test

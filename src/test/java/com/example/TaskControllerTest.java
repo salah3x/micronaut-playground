@@ -27,35 +27,25 @@ class TaskControllerTest {
 
         var exception = Assertions.assertThrows(
                 HttpClientResponseException.class,
-                () -> client.toBlocking().exchange(HttpRequest.POST("/", new TaskDTO()))
+                () -> client.toBlocking().exchange(HttpRequest.POST("/", new TaskDTO(null)))
         );
         Assertions.assertEquals(HttpStatus.BAD_REQUEST, exception.getStatus());
 
         exception = Assertions.assertThrows(
                 HttpClientResponseException.class,
-                () -> {
-                    var dto = new TaskDTO();
-                    dto.setName("");
-                    client.toBlocking().exchange(HttpRequest.POST("/", dto));
-                }
+                () -> client.toBlocking().exchange(HttpRequest.POST("/", new TaskDTO("")))
         );
         Assertions.assertEquals(HttpStatus.BAD_REQUEST, exception.getStatus());
 
-        var dto = new TaskDTO();
-        dto.setName("Task");
         var task = client.toBlocking()
-                .retrieve(HttpRequest.POST("/", dto), Argument.of(Task.class));
+                .retrieve(HttpRequest.POST("/", new TaskDTO("Task")), Argument.of(Task.class));
         Assertions.assertNotNull(task.getId());
         Assertions.assertEquals("Task", task.getName());
         Assertions.assertEquals(false, task.getDone());
 
         exception = Assertions.assertThrows(
                 HttpClientResponseException.class,
-                () -> {
-                    var duplicate = new TaskDTO();
-                    duplicate.setName("Task");
-                    client.toBlocking().exchange(HttpRequest.POST("/", duplicate));
-                }
+                () -> client.toBlocking().exchange(HttpRequest.POST("/", new TaskDTO("Task")))
         );
         Assertions.assertEquals(HttpStatus.BAD_REQUEST, exception.getStatus());
         Assertions.assertEquals(

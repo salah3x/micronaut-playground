@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import javax.inject.Singleton;
 import javax.transaction.Transactional;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Singleton
 @RequiredArgsConstructor
@@ -16,7 +17,7 @@ public class TaskService {
     private final TaskRepo repo;
 
     @ReadOnly
-    public Iterable<Task> getTasks() {
+    public List<Task> getTasks() {
         return repo.findAll();
     }
 

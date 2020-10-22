@@ -8,6 +8,7 @@ import io.micronaut.http.annotation.Post;
 import lombok.RequiredArgsConstructor;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller("/tasks")
 @RequiredArgsConstructor
@@ -16,7 +17,7 @@ public class TaskController {
     private final TaskService service;
 
     @Get
-    Iterable<Task> list() {
+    List<Task> list() {
         return service.getTasks();
     }
 
