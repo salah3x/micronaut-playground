@@ -15,15 +15,16 @@ import java.util.List;
 public class TaskController {
 
     private final TaskService service;
+    private final TaskDTO.TaskDTOMapper mapper;
 
     @Get
-    List<Task> list() {
-        return service.getTasks();
+    List<TaskDTO> list() {
+        return mapper.toDTOs(service.getTasks());
     }
 
     @Post
     Task add(@Valid TaskDTO task) {
-        return service.save(new Task(task.getName()));
+        return service.save(mapper.toEntity(task));
     }
 
     @Error
