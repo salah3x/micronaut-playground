@@ -19,12 +19,12 @@ public class TaskController {
 
     @Get
     List<TaskDTO> list() {
-        return mapper.toDTOs(service.getTasks());
+        return mapper.map(service.getTasks());
     }
 
     @Post
     Task add(@Valid TaskDTO task) {
-        return service.save(mapper.toEntity(task));
+        return service.save(mapper.map(task));
     }
 
     @Error

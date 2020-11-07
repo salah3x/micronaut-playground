@@ -1,8 +1,7 @@
 package com.example;
 
 import io.micronaut.core.annotation.Introspected;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Value;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
@@ -10,20 +9,19 @@ import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 @Introspected
-@Getter
-@Setter
+@Value
 public class TaskDTO {
 
     @NotBlank
-    private String name;
+    String name;
 
     @Mapper(componentModel = "jsr330")
     public interface TaskDTOMapper {
 
-        List<TaskDTO> toDTOs(List<Task> tasks);
+        List<TaskDTO> map(List<Task> tasks);
 
         @Mapping(target = "id", ignore = true)
         @Mapping(target = "done", ignore = true)
-        Task toEntity(TaskDTO taskDTO);
+        Task map(TaskDTO taskDTO);
     }
 }

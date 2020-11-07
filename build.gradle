@@ -21,10 +21,10 @@ micronaut {
 }
 
 dependencies {
+    annotationProcessor('org.mapstruct:mapstruct-processor:1.4.1.Final')
+    implementation('org.mapstruct:mapstruct:1.4.1.Final')
     annotationProcessor("org.projectlombok:lombok:1.18.12")
     compileOnly('org.projectlombok:lombok:1.18.12')
-    annotationProcessor('org.mapstruct:mapstruct-processor:1.4.1.Final')
-    compile('org.mapstruct:mapstruct:1.4.1.Final')
     annotationProcessor("io.micronaut.data:micronaut-data-processor")
     annotationProcessor("io.micronaut.openapi:micronaut-openapi")
     annotationProcessor("io.micronaut:micronaut-management")
