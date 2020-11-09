@@ -1,5 +1,6 @@
 package com.example;
 
+import io.micronaut.context.annotation.Property;
 import io.micronaut.core.type.Argument;
 import io.micronaut.http.HttpRequest;
 import io.micronaut.http.HttpStatus;
@@ -13,6 +14,7 @@ import org.junit.jupiter.api.Test;
 import javax.inject.Inject;
 
 @MicronautTest
+@Property(name = "micronaut.security.enabled", value = "false")
 class TaskControllerTest {
 
     @Inject

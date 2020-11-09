@@ -1,0 +1,73 @@
+paths:
+  /login:
+    post:
+      tags:
+        - Authentication
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              $ref: '#/components/schemas/UsernamePasswordCredentials'
+      responses:
+        default:
+          description: login default response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BearerAccessRefreshToken'
+
+  /refresh_token:
+    post:
+      tags:
+        - Authentication
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              $ref: '#/components/schemas/TokenRefreshRequest'
+      responses:
+        default:
+          description: refresh token default response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BearerAccessRefreshToken'
+components:
+  schemas:
+    UsernamePasswordCredentials:
+      required:
+        - username
+        - password
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+    TokenRefreshRequest:
+      required:
+        - refresh_token
+        - grant_type
+      type: object
+      properties:
+        refresh_token:
+          type: string
+        grant_type:
+          type: string
+          enum:
+            - refresh_token
+    BearerAccessRefreshToken:
+      type: object
+      properties:
+        username:
+          type: string
+        access_token:
+          type: string
+        refresh_token:
+          type: string
+        token_type:
+          type: string
+        expires_in:
+          type: integer

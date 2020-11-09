@@ -15,6 +15,7 @@ import javax.inject.Inject;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @MicronautTest(rebuildContext = true)
+@Property(name = "micronaut.security.enabled", value = "false")
 public class ManagementTest {
 
     @Inject
