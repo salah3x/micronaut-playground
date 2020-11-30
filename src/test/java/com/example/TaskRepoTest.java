@@ -16,7 +16,7 @@ class TaskRepoTest {
     @Test
     void findByName() {
         var task = repo.save(new Task("Test"));
-        var name = repo.findByName("Test")
+        var name = repo.find("Test")
                 .map(Task::getName)
                 .orElse(null);
         assertEquals(task.getName(), name);

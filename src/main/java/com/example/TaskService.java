@@ -23,7 +23,7 @@ public class TaskService {
 
     @Transactional
     public Task save(@NotNull Task task) {
-        repo.findByName(task.getName())
+        repo.find(task.getName())
                 .ifPresent(t -> {
                     var message = "Task with name '" + t.getName() + "' already exists.";
                     throw new DuplicateEntryException(message);
